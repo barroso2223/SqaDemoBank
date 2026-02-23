@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SqaDemoBank.Models.Transfer>
+
+<h2>Transfer History</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Amount</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transfer in Model)
+        {
+            <tr>
+                <td>@transfer.Id</td>
+                <td>@transfer.FromAccount?.OwnerName</td>
+                <td>@transfer.ToAccount?.OwnerName</td>
+                <td>@transfer.Amount</td>
+                <td>@transfer.Timestamp</td>
+            </tr>
+        }
+    </tbody>
+</table>

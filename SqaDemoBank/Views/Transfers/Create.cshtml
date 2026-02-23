@@ -1,0 +1,40 @@
+﻿@model SqaDemoBank.Models.TransferRequestDto
+@{
+    ViewData["Title"] = "Create Transfer";
+    var accounts = ViewBag.Accounts as IEnumerable<SqaDemoBank.Models.Account>;
+}
+
+<h2>Create Transfer</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>From Account</label>
+        <select asp-for="FromAccountId" class="form-control">
+            @foreach (var acct in accounts)
+            {
+                <option value="@acct.Id">@acct.OwnerName (@acct.Balance)</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>To Account</label>
+        <select asp-for="ToAccountId" class="form-control">
+            @foreach (var acct in accounts)
+            {
+                <option value="@acct.Id">@acct.OwnerName (@acct.Balance)</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Amount</label>
+        <input asp-for="Amount" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit Transfer</button>
+</form>
+
+<div class="text-danger">
+    @Html.ValidationSummary()
+</div>
